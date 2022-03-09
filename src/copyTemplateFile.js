@@ -14,12 +14,22 @@ const getWhichType = (type) => {
   }
 }
 
+const ignoreFile = `#node modules\nnode_modules\n# editor configs\n.idea\n.vscode\n# build file\ndist`
+const ftpTemplate = `user=""\npassword=""\nhost=""\nlocalRoot=""\nremoteRoot=""\ninclude="*,**/*"\ndeleteRemote=true\nforcePasv=true`
+const babelrc = `{\n  "presets": [\n    [\n      "@babel/preset-env",\n      {\n        "targets": {\n          "ie": "11"\n        },\n        "useBuiltIns": "usage",\n        "corejs": 3\n      }\n    ]\n  ]\n}`
+
 exports.copyTemplate = async(type, dirName) => {
   const selectType = getWhichType(type);
   const dir = `./${dirName}`
   const targetDir = `${__dirname}/../${selectType}`;
-  console.log(targetDir, "to", dir)
   await fs.ensureDir(dir);
   await fs.copy(targetDir, dir);
-  console.log("success!")
+  await fs.outputFile(`${dir}/.gitignore`, ignoreFile);
+  await fs.outputFile(`${dir}/.node-version`,`14.15.1`);
+  await fs.ensureDir(`${dir}/ftp/`);
+  await fs.outputFile(`${dir}/ftp/.env.preview`, ftpTemplate);
+  await fs.outputFile(`${dir}/ftp/.env.staging`, ftpTemplate);
+  await fs.outputFile(`${dir}/.babelrc`, babelrc);
+  console.log("Success create ViewTemplateApp!");
+  console.log("Thank you!")
 }
