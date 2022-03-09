@@ -2,9 +2,12 @@
   "name": "create-view-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc -w",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "tsc --init"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/ITakayuki/create-view-app/issues"
   },
-  "homepage": "https://github.com/ITakayuki/create-view-app#readme"
+  "bin": "./bin/index.js",
+  "homepage": "https://github.com/ITakayuki/create-view-app#readme",
+  "dependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/fs-extra": "^9.0.13",
+    "commander": "^9.0.0",
+    "fs-extra": "^10.0.1",
+    "typescript": "^4.6.2"
+  }
 }
