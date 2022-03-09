@@ -1,6 +1,6 @@
-import fs from "fs-extra";
+const fs = require("fs-extra");
 
-const getWhichType = (type:string) => {
+const getWhichType = (type) => {
   console.log(type)
   try {
     switch (type) {
@@ -14,7 +14,7 @@ const getWhichType = (type:string) => {
   }
 }
 
-export const copyTemplate = async(type:string, dirName: string) => {
+exports.copyTemplate = async(type, dirName) => {
   const selectType = getWhichType(type);
   const dir = `./${dirName}`
   const targetDir = `${__dirname}/../${selectType}`;

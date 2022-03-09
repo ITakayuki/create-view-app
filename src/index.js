@@ -1,14 +1,15 @@
-import {Command} from "commander";
+#! /usr/bin/env node
+const {Command} = require("commander");
 const program = new Command();
 
-import {copyTemplate} from "./copyTemplateFile";
+const {copyTemplate} = require("./copyTemplateFile");
 
 program
   .option("-t, --type", "witch type install?", "ejs")
 program.parse(process.argv);
 const dirName = process.argv[2]
 
-const AsyncFunction = (cb: ()=>void) => {
+const AsyncFunction = (cb) => {
   cb();
 }
 
