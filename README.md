@@ -5,3 +5,8 @@
 $ npx create-view-app project-name
 ```
 
+## Parameters
+| param | default | desc |
+|----------|----------|--------|
+| --typescript | false | create Project of TS |
+

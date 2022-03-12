@@ -1,0 +1,12 @@
+#editor config files
+.idea
+.vscode
+
+# packages
+node_modules
+
+# dist file
+dist
+
+# ftp setting Files
+ftp/**/*

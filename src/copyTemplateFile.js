@@ -18,10 +18,10 @@ const ignoreFile = `#node modules\nnode_modules\n# editor configs\n.idea\n.vscod
 const ftpTemplate = `user=""\npassword=""\nhost=""\nlocalRoot=""\nremoteRoot=""\ninclude="*,**/*"\ndeleteRemote=true\nforcePasv=true`
 const babelrc = `{\n  "presets": [\n    [\n      "@babel/preset-env",\n      {\n        "targets": {\n          "ie": "11"\n        },\n        "useBuiltIns": "usage",\n        "corejs": 3\n      }\n    ]\n  ]\n}`
 
-exports.copyTemplate = async(type, dirName) => {
+exports.copyTemplate = async(type, dirName, ts) => {
   const selectType = getWhichType(type);
   const dir = `./${dirName}`
-  const targetDir = `${__dirname}/../${selectType}`;
+  const targetDir = `${__dirname}/../${selectType}${ts?"-ts":""}`;
   await fs.ensureDir(dir);
   await fs.copy(targetDir, dir);
   await fs.outputFile(`${dir}/.gitignore`, ignoreFile);
@@ -30,6 +30,6 @@ exports.copyTemplate = async(type, dirName) => {
   await fs.outputFile(`${dir}/ftp/.env.preview`, ftpTemplate);
   await fs.outputFile(`${dir}/ftp/.env.staging`, ftpTemplate);
   await fs.outputFile(`${dir}/.babelrc`, babelrc);
-  console.log("Success create ViewTemplateApp!");
+  console.log(`Success create ViewTemplateApp ${ts ? "for typescript": ""}!`);
   console.log("Thank you!")
 }
